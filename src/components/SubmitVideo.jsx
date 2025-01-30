@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { IoIosArrowRoundBack } from "react-icons/io";
 import hilton from '../assets/HiltonLogo.png';
 import pizza from "../assets/pizza.jpg"
-import subtract from "../assets/subtract.png"
+import subtract from "../assets/Subtract.png"
 import { FaPlay } from "react-icons/fa";
 import { useNavigate ,useLocation} from 'react-router-dom';
 
