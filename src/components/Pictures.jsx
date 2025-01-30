@@ -1,0 +1,59 @@
+import React, { useEffect } from 'react';
+import { IoIosArrowRoundBack } from "react-icons/io";
+import hilton from '../assets/HiltonLogo.png';
+import camera from "../assets/camera.png"
+import { useNavigate,useLocation } from 'react-router-dom';
+const Picture = () => {
+  const navigate=useNavigate()
+  const location=useLocation()
+  const {satisfaction, ambiance}=location.state || {}
+  const data={satisfaction, ambiance}
+console.log(data)
+  const handleNext=()=>{
+    
+    navigate("/TakePhoto",{ state: { satisfaction, ambiance } })
+  }
+  const handleBack=()=>{
+  navigate("/comment")
+  }
+  return (
+    <div className="flex flex-col w-full p-4">
+      <div className="flex items-center mb-4 ">
+        <button
+        onClick={handleBack}
+         className="mr-4">
+          <IoIosArrowRoundBack className="text-2xl text-gray-800" />
+        </button>
+        <div className="flex flex-col items-center flex-grow">
+          <img
+            src={hilton}
+            alt="Hilton Logo"
+            className="w-40 h-24 object-contain"
+          />
+          <p className="text-gray-700 font-semibold text-center text-sm">
+          Your confort is our priority
+          </p>
+        </div>
+       <button style={{width:"90px",height:"30px",borderRadius:"15px",background:"#FFEDD6",color:"#FF9100",fontWeight:500,fontFamily:"Roboto"}}>End Trip</button>
+      </div>
+
+      <div className="bg-white rounded-lg shadow-md p-4 mb-5 mx-auto w-full max-w-md flex flex-col items-center">
+        <p className="text-gray-800 text-base font-medium mb-3">
+        Capture pictures of your experience. We are eager to hear from you and improve
+        </p>
+        <div style={{display:"flex",alignItems:"center"}}>
+         <img  src={camera} style={{width:"160px",height:"160px"}}/>
+        </div>
+      
+      </div>
+      <button
+      onClick={handleNext}
+        className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium"
+      >
+        Next
+      </button>
+    </div>
+  );
+};
+
+export default Picture;
