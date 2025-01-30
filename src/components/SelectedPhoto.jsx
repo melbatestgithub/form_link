@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import hilton from "../assets/HiltonLogo.png";
-import subtract from "../assets/subtract.png";
+import subtract from "../assets/Subtract.png";
 import { useNavigate, useLocation, data } from "react-router-dom";
 
 const SelectedPhoto = () => {
