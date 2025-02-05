@@ -16,27 +16,25 @@ const SendingEmail = () => {
 
   const handleNext = async () => {
     try {
-      // Convert the blob URL to a file
-      const file = await fetch(videoUrl) // videoUrl is the recorded video blob URL
+      const file = await fetch(videoUrl) 
         .then((res) => res.blob())
         .then((blob) =>
           new File([blob], `recorded-video-${Date.now()}.mp4`, {
-            type: "video/mp4", // Ensure the type matches the recorded video
+            type: "video/mp4", 
           })
         );
   
-      // Prepare form data
       const formData = new FormData();
       formData.append("satisfaction", satisfaction);
       formData.append("ambiance", ambiance);
       formData.append("videoFeedback", videoFeedback);
       formData.append("phone", phone);
       formData.append("email", email);
-      formData.append("video", file); // Attach the recorded video file
+      formData.append("video", file); 
   
       setLoading(true);
   
-      // Submit form data
+     
       const response = await axios.post(
         "https://form-server-6h8l.onrender.com/videoFeedback/submit-form",
         formData,
