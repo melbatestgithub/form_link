@@ -7,14 +7,14 @@ const Comment = () => {
   const [comment, setComment] = useState(""); 
   const navigate = useNavigate();
   const location = useLocation();
-  const { satisfaction, ambiance } = location.state || {};
+  const { satisfaction, ambiance,experienceId } = location.state || {};
   const handleNext = () => {
     if (comment.trim() === "") {
       alert("Please enter a comment.");
       return;
     }
     
-    navigate("/editcomment", { state: { satisfaction, ambiance, comment } });
+    navigate(`/editcomment?experienceId=${experienceId}`, { state: { satisfaction, ambiance, comment } });
   };
 
   const handleBack=()=>{
