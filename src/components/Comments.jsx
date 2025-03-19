@@ -46,7 +46,7 @@
 
       switch (activeSection) {
         case "comments":
-          navigate(`/comment2?experienceId=${experienceId}`,{ state: { satisfaction, ambiance } });
+          navigate(`/comment2?experienceId=${experienceId}`,{ state: { satisfaction, ambiance,experienceId } });
           break;
         case "pictures":
           navigate("/picture",{ state: { satisfaction, ambiance } });

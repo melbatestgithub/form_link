@@ -14,7 +14,7 @@ const Comment = () => {
       return;
     }
     
-    navigate(`/editcomment?experienceId=${experienceId}`, { state: { satisfaction, ambiance, comment } });
+    navigate(`/editcomment?experienceId=${experienceId}`, { state: { satisfaction, ambiance, comment,experienceId } });
   };
 
   const handleBack=()=>{

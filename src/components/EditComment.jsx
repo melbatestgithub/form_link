@@ -14,7 +14,7 @@ const EditComment = () => {
       console.error("experienceId is missing");
       return;
     }
-    navigate(`/sendingEmail?experienceId=${experienceId}`, { state: { satisfaction, ambiance, comment } });
+    navigate(`/sendingEmail?experienceId=${experienceId}`, { state: { satisfaction, ambiance, comment,experienceId } });
   };
 
   const handleBack = () => {
