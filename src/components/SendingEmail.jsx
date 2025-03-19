@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import { IoIosArrowRoundBack } from "react-icons/io";
 import hilton from '../assets/HiltonLogo.png';
-import { useNavigate,useLocation } from 'react-router-dom';
-import axios from 'axios'
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
+
 const SendingEmail = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const experienceId = searchParams.get('experienceId'); // Extract experienceId from URL
+
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const location=useLocation()
-  const { satisfaction, ambiance,comment } = location.state || {};
-  const handleNext =async (e) => {
-    // Prevent form submission if fields are empty
+  const { satisfaction, ambiance, comment } = location.state || {};
+
+  const handleNext = async (e) => {
     e.preventDefault();
 
     if (!phone || !email) {
       alert("Please fill in both fields!");
-      return; // Stop navigation if required fields are not filled
+      return;
     }
 
     const feedbackData = {
@@ -23,23 +27,20 @@ const SendingEmail = () => {
       ambiance,
       comment,
       phone,
-      email
+      email,
+      experienceId // Now correctly extracted from query params
     };
 
     try {
-      // Send data to backend (Make sure the API URL is correct)
-      const response = await axios.post('http://localhost:5800/feedback/create', feedbackData);
+      const response = await axios.post('http://localhost:5800/comments/create', feedbackData);
       console.log('Feedback submitted:', response.data);
-      
-      // Navigate to the next page (assuming it's "/comment")
+
+      // Navigate to the next page
       navigate("/comment"); 
     } catch (error) {
       console.error('Error submitting feedback:', error);
       alert('An error occurred while submitting your feedback. Please try again.');
     }
-
-
-    navigate("/ThankYou");
   };
 
   const handleBack = () => {
@@ -58,86 +59,39 @@ const SendingEmail = () => {
             alt="Hilton Logo"
             className="w-40 h-24 object-contain"
           />
-          <p
-            className="text-gray-700 font-semibold text-center text-sm"
-            style={{
-              fontSize: "20px",
-              lineHeight: "23.3px",
-              fontFamily: "Roboto"
-            }}
-          >
+          <p className="text-gray-700 font-semibold text-center text-sm" style={{ fontSize: "20px", lineHeight: "23.3px", fontFamily: "Roboto" }}>
             Thank you for giving us the opportunity to improve our service
           </p>
         </div>
       </div>
 
       <div className="bg-white rounded-lg shadow-md p-4 mb-5 mx-auto w-full max-w-md">
-        <p
-          style={{
-            fontSize: "1rem",
-            fontWeight: 600,
-            lineHeight: "18.75px",
-            fontFamily: "Roboto",
-            color: "#333333"
-          }}
-        >
+        <p style={{ fontSize: "1rem", fontWeight: 600, lineHeight: "18.75px", fontFamily: "Roboto", color: "#333333" }}>
           We would love to follow up with you about your experience.
         </p>
         <form className="flex flex-col items-start p-3" onSubmit={handleNext}>
-          <label
-            style={{
-              fontSize: "14px",
-              fontFamily: "Roboto",
-              fontWeight: 600,
-              color: "#333333"
-            }}
-            className="my-2"
-          >
+          <label className="my-2" style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }}>
             Your Phone
           </label>
           <input
             className="focus:appearance-none"
-            style={{
-              
-              textAlign: "start",
-              padding: "1rem",
-              width: "100%",
-              height: "50px",
-              background: "#F3F3F3",
-              borderRadius: "10px"
-            }}
+            style={{ textAlign: "start", padding: "1rem", width: "100%", height: "50px", background: "#F3F3F3", borderRadius: "10px" }}
             placeholder="Enter your number..."
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            name='phone'
+            name="phone"
           />
-          <label
-            style={{
-              fontSize: "14px",
-              fontFamily: "Roboto",
-              fontWeight: 600,
-              color: "#333333"
-            }}
-            className="my-2"
-          >
+          <label className="my-2" style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }}>
             Your Email
           </label>
           <input
             className="focus:appearance-none"
-            style={{
-              
-              textAlign: "start",
-              padding: "1rem",
-              width: "100%",
-              height: "50px",
-              background: "#F3F3F3",
-              borderRadius: "10px"
-            }}
+            style={{ textAlign: "start", padding: "1rem", width: "100%", height: "50px", background: "#F3F3F3", borderRadius: "10px" }}
             placeholder="Enter your Email Address..."
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            name='email'
+            name="email"
           />
           <button
             type="submit"
