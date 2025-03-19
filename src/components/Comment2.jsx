@@ -7,14 +7,18 @@ const Comment = () => {
   const [comment, setComment] = useState(""); 
   const navigate = useNavigate();
   const location = useLocation();
-  const { satisfaction, ambiance,experienceId } = location.state || {};
+
+   // Extract experienceId from URL query params
+   const searchParams = new URLSearchParams(location.search);
+   const experienceId = searchParams.get("experienceId");
+  const { satisfaction, ambiance } = location.state || {};
   const handleNext = () => {
     if (comment.trim() === "") {
       alert("Please enter a comment.");
       return;
     }
     
-    navigate(`/editcomment?experienceId=${experienceId}`, { state: { satisfaction, ambiance, comment,experienceId } });
+    navigate(`/editcomment?experienceId=${experienceId}`, { state: { satisfaction, ambiance, comment } });
   };
 
   const handleBack=()=>{

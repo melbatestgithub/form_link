@@ -14,7 +14,10 @@
       setActiveSection(section);
     };
 
-    const { satisfaction, ambiance,experienceId } = location.state || {};
+  // Extract experienceId from URL query params
+  const searchParams = new URLSearchParams(location.search);
+  const experienceId = searchParams.get("experienceId");
+    const { satisfaction, ambiance } = location.state || {};
     const handleBack = () => {
       navigate("/feedback");
     };
@@ -46,7 +49,7 @@
 
       switch (activeSection) {
         case "comments":
-          navigate(`/comment2?experienceId=${experienceId}`,{ state: { satisfaction, ambiance,experienceId } });
+          navigate(`/comment2?experienceId=${experienceId}`,{ state: { satisfaction, ambiance } });
           break;
         case "pictures":
           navigate("/picture",{ state: { satisfaction, ambiance } });

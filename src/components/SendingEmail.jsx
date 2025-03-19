@@ -7,12 +7,12 @@ import axios from 'axios';
 const SendingEmail = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  // const searchParams = new URLSearchParams(location.search);
-  // const experienceId = searchParams.get('experienceId'); // Extract experienceId from URL
+  const searchParams = new URLSearchParams(location.search);
+  const experienceId = searchParams.get('experienceId'); // Extract experienceId from URL
 
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const { satisfaction, ambiance, comment ,experienceId} = location.state || {};
+  const { satisfaction, ambiance, comment } = location.state || {};
 
   const handleNext = async (e) => {
     e.preventDefault();

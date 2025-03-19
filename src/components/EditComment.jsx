@@ -6,15 +6,19 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 const EditComment = () => {
   const location = useLocation();
-  const { satisfaction, ambiance,comment,experienceId } = location.state|| {}; 
+  const { satisfaction, ambiance,comment } = location.state|| {}; 
   const [ncomment, setComment] = useState(location.state?.comment || ""); 
+
+   // Extract experienceId from URL query params
+   const searchParams = new URLSearchParams(location.search);
+   const experienceId = searchParams.get("experienceId");
   const navigate=useNavigate()
   const handleNext = () => {
     if (!experienceId) {
       console.error("experienceId is missing");
       return;
     }
-    navigate(`/sendingEmail?experienceId=${experienceId}`, { state: { satisfaction, ambiance, comment,experienceId } });
+    navigate(`/sendingEmail?experienceId=${experienceId}`, { state: { satisfaction, ambiance, comment } });
   };
 
   const handleBack = () => {
