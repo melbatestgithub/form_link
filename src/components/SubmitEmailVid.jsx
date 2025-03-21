@@ -44,7 +44,7 @@ const SendingEmail = () => {
       );
 
       console.log("Video submitted successfully:", response.data);
-      navigate("/ThankYou");
+      navigate(`/ThankYou?experienceId=${experienceId}`);
     } catch (error) {
       console.error("Error submitting video:", error.response?.data || error.message);
       setError("An error occurred while uploading. Please try again.");

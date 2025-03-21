@@ -1,12 +1,14 @@
 import React from 'react'
 import Hand from "../assets/handshake.png"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,useLocation } from 'react-router-dom'
 
 const ThankYou = () => {
   const navigate = useNavigate()
-
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const experienceId = searchParams.get('experienceId');
   const handleBack = () => {
-    navigate("/feedback")
+    navigate(`/feedback?experienceId=${experienceId}`)
   }
 
   return (

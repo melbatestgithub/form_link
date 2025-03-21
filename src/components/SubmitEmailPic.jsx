@@ -66,7 +66,7 @@ const SendingEmail = () => {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       console.log("Feedback submitted:", response.data);
-      navigate("/ThankYou");
+      navigate(`/ThankYou?experienceId=${experienceId}`);
     } catch (error) {
       console.error("Error submitting feedback:", error);
       alert("There was an issue submitting your feedback. Please try again.");
