@@ -3,10 +3,12 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import hilton from '../assets/HiltonLogo.png';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';  // Import axios
+import { ClipLoader } from 'react-spinners';  // Import a spinner component
 
 const SendingEmail = () => {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);  // Add loading state
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -14,31 +16,29 @@ const SendingEmail = () => {
   const experienceId = searchParams.get('experienceId');
   const { allPhotos, satisfaction, ambiance, commentOne, commentTwo } = location.state || {};
 
-
-
   // Function to convert Base64 to File
-function base64ToFile(base64, filename) {
-  const arr = base64.split(',');
-  const mime = arr[0].match(/:(.*?);/)[1];
-  const bstr = atob(arr[1]);
-  let n = bstr.length;
-  const u8arr = new Uint8Array(n);
+  function base64ToFile(base64, filename) {
+    const arr = base64.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
 
-  while (n--) {
-    u8arr[n] = bstr.charCodeAt(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
   }
-
-  return new File([u8arr], filename, { type: mime });
-}
 
   const handleNext = async (e) => {
     e.preventDefault();
-  
+
     if (!phone || !email) {
       alert("Please fill in both fields!");
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("satisfaction", satisfaction);
     formData.append("ambiance", ambiance);
@@ -46,42 +46,34 @@ function base64ToFile(base64, filename) {
     formData.append("commentTwo", commentTwo);
     formData.append("email", email);
     formData.append("phone", phone);
-    formData.append("experienceId",experienceId)
-    // Append files with the correct field name
+    formData.append("experienceId", experienceId);
+
+    // Append images correctly
     if (Array.isArray(allPhotos) && allPhotos.length > 0) {
       allPhotos.forEach((photo, index) => {
-        if (typeof photo === 'string' && photo.startsWith('data:image/')) {
-          // Convert Base64 string to File object
+        if (typeof photo === "string" && photo.startsWith("data:image/")) {
           const file = base64ToFile(photo, `photo-${index}.png`);
-          formData.append("pictures", file);
-        } else if (photo instanceof File) {
-          // If it's already a File object, append it directly
-          formData.append("pictures", photo);
-        } else {
-          console.error("Invalid file format:", photo);
+          formData.append("pictures", file); // ✅ Matches multer field name
         }
       });
     }
-  
+
     try {
+      setLoading(true);  // Set loading state to true before the request
       const response = await axios.post(
-        'http://localhost:5800/pictureFeedback/submit-form',
+        "http://localhost:5800/pictureFeedback/submit-comment",  // Make sure the URL matches your backend endpoint
         formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", // Let axios set the boundary automatically
-          },
-        }
+        { headers: { "Content-Type": "multipart/form-data" } }
       );
-      console.log('Feedback submitted:', response.data);
+      console.log("Feedback submitted:", response.data);
       navigate("/ThankYou");
     } catch (error) {
-      console.error('Error submitting feedback:', error);
-      alert('There was an issue submitting your feedback. Please try again.');
+      console.error("Error submitting feedback:", error);
+      alert("There was an issue submitting your feedback. Please try again.");
+    } finally {
+      setLoading(false);  // Set loading state to false once the request is finished
     }
   };
-  
-  
 
   const handleBack = () => {
     navigate("/MultiSelectPhoto");
@@ -131,12 +123,19 @@ function base64ToFile(base64, filename) {
         </div>
       </div>
 
-      <button
-        onClick={handleNext}
-        className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium mt-20"
-      >
-        Submit Feedback
-      </button>
+      {/* Display the spinner when loading */}
+      {loading ? (
+        <div className="flex justify-center mt-10">
+          <ClipLoader color="#FF7F50" loading={loading} size={50} />
+        </div>
+      ) : (
+        <button
+          onClick={handleNext}
+          className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium mt-20"
+        >
+          Submit Feedback
+        </button>
+      )}
     </div>
   );
 };
