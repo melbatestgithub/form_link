@@ -8,6 +8,9 @@ import light from "../assets/light.png";
 const TakePhoto = () => {
   const navigate = useNavigate();
   const location = useLocation();
+     // Extract experienceId from URL query params
+     const searchParams = new URLSearchParams(location.search);
+     const experienceId = searchParams.get("experienceId");
   const { satisfaction, ambiance, photos = [] } = location.state || {};
 
   const videoRef = useRef(null);
@@ -61,7 +64,7 @@ const TakePhoto = () => {
   const handleNext = () => {
     const capturedPhoto = capturePhoto();
     if (capturedPhoto) {
-      navigate("/selectedphoto", {
+      navigate(`/selectedphoto?experienceId=${experienceId}`, {
         state: {
           allPhotos: [...photos, capturedPhoto],
           satisfaction,

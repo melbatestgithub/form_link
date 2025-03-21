@@ -52,10 +52,10 @@
           navigate(`/comment2?experienceId=${experienceId}`,{ state: { satisfaction, ambiance } });
           break;
         case "pictures":
-          navigate("/picture",{ state: { satisfaction, ambiance } });
+          navigate(`/picture?experienceId=${experienceId}`,{ state: { satisfaction, ambiance } });
           break;
          case "videos":
-          navigate("/video",{ state: { satisfaction, ambiance } });
+          navigate(`/video?experienceId=${experienceId}`,{ state: { satisfaction, ambiance } });
           break;
         default:
           break;

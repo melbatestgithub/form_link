@@ -12,13 +12,16 @@ const SelectedPhoto = () => {
 //  console.log("Photos in SelectedPhoto:", allPhotos);
 //   const { satisfaction, ambiance } = location.state || {};
 //   const [photos, setPhotos] = useState(allPhotos ? [allPhotos] : []); // Manage multiple photos
+ // Extract experienceId from URL query params
+ const searchParams = new URLSearchParams(location.search);
+ const experienceId = searchParams.get("experienceId");
 const { allPhotos = [], satisfaction, ambiance } = location.state || {};
 const [photos, setPhotos] = useState(Array.isArray(allPhotos) ? allPhotos : []);
 
   const [commentOne, setCommentOne] = useState("");
 
   const handleNext = () => {
-    navigate("/MultiSelectPhoto", {
+    navigate(`/MultiSelectPhoto?experienceId=${experienceId}`, {
       state: { photos, satisfaction, ambiance, commentOne },
     });
     const data={

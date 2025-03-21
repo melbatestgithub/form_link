@@ -36,7 +36,7 @@ const SendingEmail = () => {
   
      
       const response = await axios.post(
-        "https://form-server-6h8l.onrender.com/videoFeedback/submit-form",
+        "http://localhost:5800/videoFeedback/submit-form",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

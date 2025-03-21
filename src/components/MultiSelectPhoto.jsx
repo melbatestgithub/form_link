@@ -6,12 +6,15 @@ import { useNavigate, useLocation } from "react-router-dom";
 const MultiSelectPhoto = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  // Extract experienceId from URL query params
+ const searchParams = new URLSearchParams(location.search);
+ const experienceId = searchParams.get("experienceId");
   const allPhotos = location.state?.photos || []; // Default to an empty array if photos are not provided
   const [commentTwo,setCommentTwo]=useState('')
   const {satisfaction, ambiance,commentOne}=location.state || {}
 
   const handleNext = () => {
-    navigate("/SubmitEmailPic",{state:{allPhotos, satisfaction, ambiance,commentOne,commentTwo }});
+    navigate(`/SubmitEmailPic?experienceId=${experienceId}`,{state:{allPhotos, satisfaction, ambiance,commentOne,commentTwo }});
   };
 
   const handleBack = () => {

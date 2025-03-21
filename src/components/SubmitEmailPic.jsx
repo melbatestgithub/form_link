@@ -10,6 +10,8 @@ const SendingEmail = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const searchParams = new URLSearchParams(location.search);
+  const experienceId = searchParams.get('experienceId');
   const { allPhotos, satisfaction, ambiance, commentOne, commentTwo } = location.state || {};
 
 
@@ -44,7 +46,7 @@ function base64ToFile(base64, filename) {
     formData.append("commentTwo", commentTwo);
     formData.append("email", email);
     formData.append("phone", phone);
-  
+    formData.append("experienceId",experienceId)
     // Append files with the correct field name
     if (Array.isArray(allPhotos) && allPhotos.length > 0) {
       allPhotos.forEach((photo, index) => {
@@ -63,7 +65,7 @@ function base64ToFile(base64, filename) {
   
     try {
       const response = await axios.post(
-        'https://form-server-6h8l.onrender.com/pictureFeedback/submit-comment',
+        'http://localhost:5800/pictureFeedback/submit-form',
         formData,
         {
           headers: {

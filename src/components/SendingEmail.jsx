@@ -36,7 +36,7 @@ const SendingEmail = () => {
       console.log('Feedback submitted:', response.data);
 
       // Navigate to the next page
-      navigate("/comment"); 
+      navigate("/ThankYou"); 
     } catch (error) {
       console.error('Error submitting feedback:', error);
       alert('An error occurred while submitting your feedback. Please try again.');
