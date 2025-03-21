@@ -6,12 +6,15 @@ import { useNavigate,useLocation } from 'react-router-dom';
 const Picture = () => {
   const navigate=useNavigate()
   const location=useLocation()
+  // Extract experienceId from URL query params
+  const searchParams = new URLSearchParams(location.search);
+  const experienceId = searchParams.get("experienceId");
   const {satisfaction, ambiance}=location.state || {}
   const data={satisfaction, ambiance}
 console.log(data)
   const handleNext=()=>{
     
-    navigate("/TakePhoto",{ state: { satisfaction, ambiance } })
+    navigate(`/TakePhoto?experienceId=${experienceId}`,{ state: { satisfaction, ambiance } })
   }
   const handleBack=()=>{
   navigate("/comment")
