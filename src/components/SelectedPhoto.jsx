@@ -31,7 +31,7 @@ const [photos, setPhotos] = useState(Array.isArray(allPhotos) ? allPhotos : []);
   };
 
   const handleBack = () => {
-    navigate(`/TakePhoto/experienceId=${experienceId}`);
+    navigate(`/TakePhoto?experienceId=${experienceId}`);
   };
 
   const handleRemovePhoto = (index) => {
@@ -110,7 +110,7 @@ const [photos, setPhotos] = useState(Array.isArray(allPhotos) ? allPhotos : []);
                 cursor: "pointer",
               }}
               onClick={() =>
-                navigate(`/TakePhoto/experienceId=${experienceId}`, { state: { photos, satisfaction, ambiance } })
+                navigate(`/TakePhoto?experienceId=${experienceId}`, { state: { photos, satisfaction, ambiance } })
               }
             >
               <img src={subtract} alt="Add Icon" />
