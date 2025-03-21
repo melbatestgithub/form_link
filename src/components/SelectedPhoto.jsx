@@ -31,7 +31,7 @@ const [photos, setPhotos] = useState(Array.isArray(allPhotos) ? allPhotos : []);
   };
 
   const handleBack = () => {
-    navigate(`/TakePhotoexperienceId=${experienceId}`);
+    navigate(`/TakePhoto/experienceId=${experienceId}`);
   };
 
   const handleRemovePhoto = (index) => {
