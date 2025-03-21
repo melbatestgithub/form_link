@@ -23,6 +23,10 @@ const timerRef = useRef(null);
   const location=useLocation()
   const {satisfaction,ambiance}=location.state || {}
 
+   // Extract experienceId from URL query params
+   const searchParams = new URLSearchParams(location.search);
+   const experienceId = searchParams.get("experienceId");
+
   useEffect(() => {
     if (count > 0 && videoLoaded) {
       const timer = setTimeout(() => setCount(count - 1), 1000); // Countdown every second
@@ -92,7 +96,7 @@ const timerRef = useRef(null);
     if (recordedChunks.current.length > 0) {
       const blob = new Blob(recordedChunks.current, { type: "video/webm" });
       const videoUrl = URL.createObjectURL(blob); // Convert blob to URL
-      navigate("/SubmitVideo", {
+      navigate(`/SubmitVideo?experienceId=${experienceId}`, {
         state: {
           satisfaction,
           ambiance,

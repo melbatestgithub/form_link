@@ -11,7 +11,9 @@ const SendingEmail = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+   // Extract experienceId from URL query params
+   const searchParams = new URLSearchParams(location.search);
+   const experienceId = searchParams.get("experienceId");
   const { satisfaction, ambiance, videoUrl,videoFeedback } = location.state || {};
 
   const handleNext = async () => {
@@ -31,6 +33,7 @@ const SendingEmail = () => {
       formData.append("phone", phone);
       formData.append("email", email);
       formData.append("video", file); 
+      formData.append("experienceId", experienceId); 
   
       setLoading(true);
   

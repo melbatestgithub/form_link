@@ -15,12 +15,15 @@ const SubmitVideo = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
 
+   // Extract experienceId from URL query params
+   const searchParams = new URLSearchParams(location.search);
+   const experienceId = searchParams.get("experienceId");
   const handleBack = () => {
-    navigate("/RecordVideo");
+    navigate(`/RecordVideo?experienceId=${experienceId}`);
   };
 
   const handleNext = () => {
-    navigate("/SubmitEmailVid",{state:{satisfaction,
+    navigate(`/SubmitEmailVid?experienceId=${experienceId}`,{state:{satisfaction,
       ambiance,
       videoUrl,videoFeedback}})
   };

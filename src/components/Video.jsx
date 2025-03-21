@@ -7,10 +7,12 @@ import {useNavigate,useLocation} from 'react-router-dom'
 const Video = () => {
   const navigate=useNavigate()
   const location=useLocation()
-
+  // Extract experienceId from URL query params
+  const searchParams = new URLSearchParams(location.search);
+  const experienceId = searchParams.get("experienceId");
   const {satisfaction,ambiance}=location.state || {}
   const handleNext=()=>{
-    navigate("/RecordVideo",{state:{satisfaction,ambiance}})
+    navigate(`/RecordVideo?experienceId=${experienceId}`,{state:{satisfaction,ambiance}})
    
   }
   const handleBack=()=>{
