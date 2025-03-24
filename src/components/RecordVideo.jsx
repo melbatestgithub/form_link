@@ -40,6 +40,12 @@ const timerRef = useRef(null);
   const startVideoFeed = async () => {
     try {
 
+      // Stop any existing stream before starting a new one
+    if (videoRef.current && videoRef.current.srcObject) {
+      let tracks = videoRef.current.srcObject.getTracks();
+      tracks.forEach(track => track.stop());
+    }
+
       const constraints = {
         video: { 
             facingMode: useBackCamera ? "environment" : "user", 
