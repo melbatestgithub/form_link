@@ -8,38 +8,44 @@ import light from "../assets/light.png";
 const TakePhoto = () => {
   const navigate = useNavigate();
   const location = useLocation();
-     // Extract experienceId from URL query params
-     const searchParams = new URLSearchParams(location.search);
-     const experienceId = searchParams.get("experienceId");
+  const searchParams = new URLSearchParams(location.search);
+  const experienceId = searchParams.get("experienceId");
+
   const { satisfaction, ambiance, photos = [] } = location.state || {};
 
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-  const [photo, setPhoto] = useState(null);
+
+  // 🔹 State to track whether the front or back camera is in use
+  const [useFrontCamera, setUseFrontCamera] = useState(true);
   const [cameraError, setCameraError] = useState(false);
 
   useEffect(() => {
-    const startCamera = async () => {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-        }
-      } catch (err) {
-        console.error("Error accessing the camera: ", err);
-        setCameraError(true);
-      }
-    };
-
     startCamera();
+    return () => stopCamera();
+  }, [useFrontCamera]); // 🔹 Restart camera when `useFrontCamera` changes
 
-    return () => {
-      if (videoRef.current && videoRef.current.srcObject) {
-        const stream = videoRef.current.srcObject;
-        stream.getTracks().forEach((track) => track.stop());
+  const startCamera = async () => {
+    stopCamera(); // 🔹 Stop the previous camera before starting a new one
+    try {
+      const constraints = {
+        video: { facingMode: useFrontCamera ? "user" : "environment" },
+      };
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
       }
-    };
-  }, []);
+    } catch (err) {
+      console.error("Error accessing the camera: ", err);
+      setCameraError(true);
+    }
+  };
+
+  const stopCamera = () => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
+    }
+  };
 
   const capturePhoto = () => {
     if (!videoRef.current || !canvasRef.current) return;
@@ -53,12 +59,7 @@ const TakePhoto = () => {
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
     const capturedImage = canvas.toDataURL("image/png");
-    setPhoto(capturedImage);
     return capturedImage;
-  };
-
-  const handleCapture = () => {
-    capturePhoto();
   };
 
   const handleNext = () => {
@@ -78,6 +79,11 @@ const TakePhoto = () => {
 
   const handleBack = () => {
     navigate("/picture");
+  };
+
+  // 🔹 Function to toggle between front and back camera
+  const toggleCamera = () => {
+    setUseFrontCamera((prev) => !prev);
   };
 
   return (
@@ -173,7 +179,9 @@ const TakePhoto = () => {
             }}
           ></div>
         </div>
+        {/* 🔹 Clicking this button will switch between front and back camera */}
         <div
+          onClick={toggleCamera}
           style={{
             width: "50px",
             height: "50px",
@@ -182,6 +190,7 @@ const TakePhoto = () => {
             display: "flex",
             alignContent: "center",
             position: "relative",
+            cursor: "pointer",
           }}
         >
           <img
