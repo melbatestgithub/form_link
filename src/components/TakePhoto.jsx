@@ -17,7 +17,7 @@ const TakePhoto = () => {
   const canvasRef = useRef(null);
 
   // 🔹 State to track whether the front or back camera is in use
-  const [useFrontCamera, setUseFrontCamera] = useState(true);
+  const [useFrontCamera, setUseFrontCamera] = useState(false);
   const [cameraError, setCameraError] = useState(false);
 
   useEffect(() => {

@@ -16,6 +16,7 @@ const RecordVideo = () => {
   const videoRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const recordedChunks = useRef([]);
+  const [useBackCamera,setUseBackCamera]=useState(true)
 
 const [recordingTime, setRecordingTime] = useState(0);
 const timerRef = useRef(null);
@@ -38,7 +39,19 @@ const timerRef = useRef(null);
 
   const startVideoFeed = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+
+      const constraints = {
+        video: { 
+            facingMode: useBackCamera ? "environment" : "user", 
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
+        }, 
+        audio: true
+    };
+
+
+
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
       videoRef.current.srcObject = stream;
       videoRef.current.onloadedmetadata = () => {
         videoRef.current.play();
@@ -112,7 +125,12 @@ const timerRef = useRef(null);
 
   useEffect(() => {
     startVideoFeed(); // Start video feed when the component mounts
-  }, []);
+  }, [useBackCamera]);
+
+  const toggleCamera = () => {
+    setUseBackCamera(prev => !prev);
+};
+
 
   return (
     <div className="flex flex-col w-full p-4">
@@ -228,6 +246,7 @@ const timerRef = useRef(null);
           </div>
         </div>
         <div
+        onClick={toggleCamera}
           style={{
             width: "50px",
             height: "50px",
