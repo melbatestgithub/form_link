@@ -19,7 +19,7 @@
   const experienceId = searchParams.get("experienceId");
     const { satisfaction, ambiance } = location.state || {};
     const handleBack = () => {
-      navigate("/feedback");
+    
     };
 
     const getSectionStyle = (section) => ({

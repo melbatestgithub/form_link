@@ -1,9 +1,9 @@
 import React from 'react'
-import Rate from '../components/Rate'
+import Comment from '../components/Comments'
 const Feedback = () => {
   return (
     <div>
-    <Rate/>
+    <Comment/>
     </div>
   )
 }
