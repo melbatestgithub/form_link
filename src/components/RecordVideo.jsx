@@ -5,7 +5,7 @@ import pizza from "../assets/pizza.jpg";
 import reload from "../assets/reload.png";
 import light from "../assets/light.png";
 import { useNavigate ,useLocation} from "react-router-dom";
-
+import '../App.css'
 
 const RecordVideo = () => {
   const navigate = useNavigate();
@@ -176,7 +176,7 @@ const timerRef = useRef(null);
       </div>
 
       <div
-        className="bg-white p-4 mb-5 mx-auto w-full max-w-md flex flex-col items-center"
+        className="video-container  bg-white p-4 mb-5 mx-auto w-full max-w-md flex flex-col items-center"
         style={{
           height: "80vh",
           border: "1px solid gray",

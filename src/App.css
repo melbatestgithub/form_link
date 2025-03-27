@@ -1,0 +1,11 @@
+.video-container{
+    position: relative;
+    width: 100%;
+    height: 80vh; /* Keep it 80vh or adjust accordingly */
+    overflow: hidden; /* Prevent overflow */
+}   
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Prevent the video from going fullscreen */
+  }
