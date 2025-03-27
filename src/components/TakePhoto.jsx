@@ -29,7 +29,8 @@ const TakePhoto = () => {
     stopCamera(); // 🔹 Stop the previous camera before starting a new one
     try {
       const constraints = {
-        video: { facingMode: useFrontCamera ? "user" : "environment" },
+        video: { facingMode: useFrontCamera ? "user" : "environment",width: { ideal: 640 }, // Set width to limit full-screen effect
+        height: { ideal: 480 }, },
       };
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
       if (videoRef.current) {
@@ -54,9 +55,14 @@ const TakePhoto = () => {
     const video = videoRef.current;
     const context = canvas.getContext("2d");
 
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    // Use video.clientWidth & clientHeight to match the displayed area
+  const videoWidth = video.clientWidth;
+  const videoHeight = video.clientHeight;
+
+
+    canvas.width = videoWidth
+    canvas.height = videoHeight
+    context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, videoWidth, videoHeight);
 
     const capturedImage = canvas.toDataURL("image/png");
     return capturedImage;
@@ -130,7 +136,8 @@ const TakePhoto = () => {
         {cameraError ? (
           <p className="text-red-500 text-center">Camera access denied. Please allow camera permissions.</p>
         ) : (
-          <video ref={videoRef} autoPlay muted className="w-full h-full object-cover" />
+          <video ref={videoRef} autoPlay muted playsInline className="w-full h-full object-contain" />
+
         )}
       </div>
 
