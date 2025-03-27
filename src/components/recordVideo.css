@@ -1,13 +1,13 @@
 .video-container{
     position: relative;
     width: 100%;
+    max-width: 600px;
     height: 80vh; /* Keep it 80vh or adjust accordingly */
     overflow: hidden; /* Prevent overflow */
 }   
 video {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Prevent the video from going fullscreen */
+    width: 100%;    /* Ensure it takes up full width but not more */
+    height: auto;   /* Keep the aspect ratio */
   }
 
   @media only screen and (max-width: 768px) {
