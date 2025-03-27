@@ -10,6 +10,7 @@ const SendingEmail = () => {
   const location = useLocation();
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [fullname,setFullname]=useState("")
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -36,6 +37,7 @@ const SendingEmail = () => {
       formData.append("email", email);
       formData.append("video", file);
       formData.append("experienceId", experienceId);
+      formData.append("fullname", fullname);
 
       const response = await axios.post(
         "http://localhost:5800/videoFeedback/submit-form",
@@ -72,6 +74,14 @@ const SendingEmail = () => {
           We would love to follow up with you about your experience.
         </p>
         <div className="flex flex-col items-start p-3">
+          <label className="my-2 text-sm font-semibold text-gray-700">Full Name</label>
+          <input
+            className="focus:outline-none p-3 w-full h-12 bg-gray-100 rounded-lg"
+            placeholder="Enter your Fullname..."
+            name="fullname"
+            onChange={(e) => setFullname(e.target.value)}
+            value={fullname}
+          />
           <label className="my-2 text-sm font-semibold text-gray-700">Your Phone</label>
           <input
             className="focus:outline-none p-3 w-full h-12 bg-gray-100 rounded-lg"

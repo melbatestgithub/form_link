@@ -8,6 +8,7 @@ import { ClipLoader } from 'react-spinners';  // Import a spinner component
 const SendingEmail = () => {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [fullname,setFullname]=useState('')
   const [loading, setLoading] = useState(false);  // Add loading state
   const navigate = useNavigate();
   const location = useLocation();
@@ -47,6 +48,7 @@ const SendingEmail = () => {
     formData.append("email", email);
     formData.append("phone", phone);
     formData.append("experienceId", experienceId);
+    formData.append("fullname",fullname)
 
     // Append images correctly
     if (Array.isArray(allPhotos) && allPhotos.length > 0) {
@@ -102,6 +104,15 @@ const SendingEmail = () => {
           We would love to follow up with you about your experience.
         </p>
         <div className='flex flex-col items-start p-3'>
+          <label style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }} className='my-2'>Full Name</label>
+          <input
+            name='fullname'
+            value={fullname}
+            onChange={(e) => setFullname(e.target.value)}
+            className='focus:appearance-none'
+            style={{ color: "#000", textAlign: "start", padding: "1rem", width: "100%", height: "50px", background: "#F3F3F3", borderRadius: "10px" }}
+            placeholder='Enter your Fullname...'
+          />
           <label style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }} className='my-2'>Your Phone</label>
           <input
             name='phone'

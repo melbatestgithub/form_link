@@ -59,6 +59,8 @@ const timerRef = useRef(null);
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
       videoRef.current.srcObject = stream;
       videoRef.current.onloadedmetadata = () => {
+      videoRef.current.playsInline = true;
+      videoRef.current.disablePictureInPicture = true;
         videoRef.current.play();
         setVideoLoaded(true); // Mark video as loaded
       };
@@ -184,7 +186,8 @@ const timerRef = useRef(null);
           transition: "opacity 0.5s",
         }}
       >
-        <video ref={videoRef} style={{ width: "100%", height: "100%" }} muted />
+       <video ref={videoRef} style={{ width: "100%", height: "100%" }} muted playsInline disablePictureInPicture />
+
         {!isReady && (
           <span
             style={{

@@ -12,13 +12,14 @@ const SendingEmail = () => {
 
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [fullname, setFullname] = useState('');
   const { satisfaction, ambiance, comment } = location.state || {};
 
   const handleNext = async (e) => {
     e.preventDefault();
 
-    if (!phone || !email) {
-      alert("Please fill in both fields!");
+    if (!phone || !email || !fullname) {
+      alert("Please fill in all fields!");
       return;
     }
 
@@ -28,6 +29,7 @@ const SendingEmail = () => {
       comment,
       phone,
       email,
+      fullname,
       experienceId // Now correctly extracted from query params
     };
 
@@ -70,6 +72,17 @@ const SendingEmail = () => {
           We would love to follow up with you about your experience.
         </p>
         <form className="flex flex-col items-start p-3" onSubmit={handleNext}>
+          <label className="my-2" style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }}>
+           Full Name
+          </label>
+          <input
+            className="focus:appearance-none"
+            style={{ textAlign: "start", padding: "1rem", width: "100%", height: "50px", background: "#F3F3F3", borderRadius: "10px" }}
+            placeholder="Enter your Fullname..."
+            value={fullname}
+            onChange={(e) => setFullname(e.target.value)}
+            name="fullname"
+          />
           <label className="my-2" style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }}>
             Your Phone
           </label>
