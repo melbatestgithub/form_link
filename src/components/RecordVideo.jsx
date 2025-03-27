@@ -5,7 +5,7 @@ import pizza from "../assets/pizza.jpg";
 import reload from "../assets/reload.png";
 import light from "../assets/light.png";
 import { useNavigate ,useLocation} from "react-router-dom";
-import '../App.css'
+// import '../App.css'
 
 const RecordVideo = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const timerRef = useRef(null);
   const location=useLocation()
   const {satisfaction,ambiance}=location.state || {}
 
-   // Extract experienceId from URL query params
+   
    const searchParams = new URLSearchParams(location.search);
    const experienceId = searchParams.get("experienceId");
 
