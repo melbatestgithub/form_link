@@ -111,7 +111,7 @@ const TakePhoto = () => {
               fontFamily: "Roboto",
             }}
           >
-            {photos.length + 1} of 2
+            {photos.length} of 2
           </button>
         </div>
         <button

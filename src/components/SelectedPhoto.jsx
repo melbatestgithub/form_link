@@ -17,8 +17,8 @@ const SelectedPhoto = () => {
  const experienceId = searchParams.get("experienceId");
 const { allPhotos = [], satisfaction, ambiance } = location.state || {};
 const [photos, setPhotos] = useState(Array.isArray(allPhotos) ? allPhotos : []);
-
-  const [commentOne, setCommentOne] = useState("");
+const [commentOne, setCommentOne] = useState("");
+const [errorMessage,setErrorMessage]=useState("")
 
   const handleNext = () => {
     navigate(`/MultiSelectPhoto?experienceId=${experienceId}`, {
@@ -36,7 +36,17 @@ const [photos, setPhotos] = useState(Array.isArray(allPhotos) ? allPhotos : []);
 
   const handleRemovePhoto = (index) => {
     setPhotos((prevPhotos) => prevPhotos.filter((_, i) => i !== index));
+    setErrorMessage("")
   };
+
+  const handleAddPhoto=()=>{
+    if(photos.length>=2){
+      setErrorMessage("Only two pictures are allowed to take !")
+      return ;
+    }
+    navigate(`/TakePhoto?experienceId=${experienceId}`, { state: { photos, satisfaction, ambiance } })
+
+  }
 
   return (
     <div className="flex flex-col w-full p-2">
@@ -97,25 +107,31 @@ const [photos, setPhotos] = useState(Array.isArray(allPhotos) ? allPhotos : []);
                 />
               </div>
             ))}
-            <div
-              style={{
-                width: "176px",
-                height: "227px",
-                border: "1px dashed #FF9100",
-                borderRadius: "10px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                position: "relative",
-                cursor: "pointer",
-              }}
-              onClick={() =>
-                navigate(`/TakePhoto?experienceId=${experienceId}`, { state: { photos, satisfaction, ambiance } })
-              }
-            >
-              <img src={subtract} alt="Add Icon" />
-            </div>
+
+            {photos.length<2 &&(
+               <div
+               style={{
+                 width: "176px",
+                 height: "227px",
+                 border: "1px dashed #FF9100",
+                 borderRadius: "10px",
+                 display: "flex",
+                 alignItems: "center",
+                 justifyContent: "center",
+                 position: "relative",
+                 cursor: "pointer",
+               }}
+               onClick={handleAddPhoto}
+               
+             >
+               <img src={subtract} alt="Add Icon" />
+             </div>
+            )}
           </div>
+          {errorMessage &&(
+         <p style={{ color: "red", fontSize: "14px", marginTop: "10px" }}>{errorMessage}</p>
+          )}
+
           <p
             style={{
               fontSize: "1rem",
