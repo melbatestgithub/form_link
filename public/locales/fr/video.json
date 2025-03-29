@@ -1,0 +1,34 @@
+{
+    "comfortPriority": "Votre confort est notre priorité",
+    "endTrip": "Terminer le voyage",
+    "captureVideo": "Capture un video de su experiencia. Estamos ansiosos por escuchar de usted y mejorar.",
+    "next": "Suivant",
+
+     "recordPrompt":"Veuillez enregistrer une vidéo avant de continuer.",
+     "timer": "Minuteur",
+
+
+
+     "thanksForReview":"Merci pour votre évaluation.",
+     "onlyTwoPictureAllowed":"Seulement deux photos sont autorisées!",
+     "selectFeedback":"Seleccione el tipo de comentario que desea compartir.",
+    "retake_video": "Reprendre la vidéo",
+     "enter_comment": "Entrez votre commentaire ici...",
+
+
+     "thankYou": "Merci de nous donner l'opportunité d'améliorer notre service",
+     "followUp": "Nous aimerions faire un suivi de votre expérience.",
+     "fullName": "Nom complet",
+     "enterFullName": "Entrez votre nom complet...",
+     "phone": "Votre téléphone",
+     "enterPhone": "Entrez votre numéro...",
+     "email": "Votre Email",
+     "enterEmail": "Entrez votre adresse e-mail...",
+     "submit": "Soumettre les commentaires",
+     "fillAllFields": "Veuillez remplir tous les champs !",
+     "submissionError":"Hubo un problema al enviar su comentario. Por favor, inténtelo de nuevo.",
+     "submitting":"Soumission en cours ..."
+    
+
+
+}

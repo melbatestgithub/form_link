@@ -3,8 +3,10 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import hilton from '../assets/HiltonLogo.png';
 import { MdModeEdit } from "react-icons/md";
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 
 const EditComment = () => {
+    const { t ,i18n} = useTranslation("comment");
   const location = useLocation();
   const { satisfaction, ambiance,comment } = location.state|| {}; 
   const [ncomment, setComment] = useState(location.state?.comment || ""); 
@@ -74,7 +76,7 @@ const EditComment = () => {
         onClick={handleNext}
         className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium mt-8"
       >
-        Next
+        {t("next")}
       </button>
     </div>
   );

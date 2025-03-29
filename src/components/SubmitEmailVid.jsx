@@ -4,8 +4,10 @@ import { FaSpinner } from "react-icons/fa";
 import hilton from "../assets/HiltonLogo.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const SendingEmail = () => {
+  const { t ,i18n} = useTranslation("video");
   const navigate = useNavigate();
   const location = useLocation();
   const [phone, setPhone] = useState("");
@@ -49,7 +51,7 @@ const SendingEmail = () => {
       navigate(`/ThankYou?experienceId=${experienceId}`);
     } catch (error) {
       console.error("Error submitting video:", error.response?.data || error.message);
-      setError("An error occurred while uploading. Please try again.");
+      setError(t("submissionError"));
     } finally {
       setLoading(false);
     }
@@ -64,36 +66,36 @@ const SendingEmail = () => {
         <div className="flex flex-col items-center flex-grow">
           <img src={hilton} alt="Hilton Logo" className="w-40 h-24 object-contain" />
           <p className="text-gray-700 font-semibold text-center text-sm" style={{ fontSize: "20px", lineHeight: "23.3px", fontFamily: "Roboto" }}>
-            Thank you for giving us the opportunity to improve our service
+           {t("thankYou")}
           </p>
         </div>
       </div>
 
       <div className="bg-white rounded-lg shadow-md p-4 mb-5 mx-auto w-full max-w-md">
         <p style={{ fontSize: "1rem", fontWeight: 600, lineHeight: "18.75px", fontFamily: "Roboto", color: "#333333" }}>
-          We would love to follow up with you about your experience.
+        {t("followUp")}
         </p>
         <div className="flex flex-col items-start p-3">
-          <label className="my-2 text-sm font-semibold text-gray-700">Full Name</label>
+          <label className="my-2 text-sm font-semibold text-gray-700"> {t("fullName")}</label>
           <input
             className="focus:outline-none p-3 w-full h-12 bg-gray-100 rounded-lg"
-            placeholder="Enter your Fullname..."
+            placeholder={t("enterFullName")}
             name="fullname"
             onChange={(e) => setFullname(e.target.value)}
             value={fullname}
           />
-          <label className="my-2 text-sm font-semibold text-gray-700">Your Phone</label>
+          <label className="my-2 text-sm font-semibold text-gray-700">{t("phone")}</label>
           <input
             className="focus:outline-none p-3 w-full h-12 bg-gray-100 rounded-lg"
-            placeholder="Enter your number..."
+            placeholder={t("enterPhone")}
             name="phone"
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
           />
-          <label className="my-2 text-sm font-semibold text-gray-700">Your Email</label>
+          <label className="my-2 text-sm font-semibold text-gray-700">{t("email")}</label>
           <input
             className="focus:outline-none p-3 w-full h-12 bg-gray-100 rounded-lg"
-            placeholder="Enter your Email Address..."
+            placeholder={t("enterEmail")}
             name="email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
@@ -109,8 +111,8 @@ const SendingEmail = () => {
         } text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium mt-20`}
         disabled={loading}
       >
-        {loading ? <FaSpinner className="animate-spin" /> : "Next"}
-        {loading && "Submitting..."}
+        {loading ? <FaSpinner className="animate-spin" /> : `${t("submit")}`}
+        {loading && `${t("submitting")}`}
       </button>
     </div>
   );

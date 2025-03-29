@@ -1,0 +1,35 @@
+{
+  "comfortPriority": "Your comfort is our priority",
+  "endTrip": "End Trip",
+  "captureVideo": "Capture videos of your experience. We are eager to hear from you and improve.",
+  "next": "Next",
+  "captureFailed":"Photo capture failed. Please try again.",
+
+  "recordPrompt": "Please record a video before proceeding.",
+  "timer": "Timer",
+
+
+
+  "thanksForReview":"Thanks for Reviewing it.",
+  "onlyTwoPictureAllowed":"Only two pictures are allowed to take!",
+  "selectFeedback":"Please select the type of feedback you would like to share.",
+  "retake_video": "Retake Video",
+  "enter_comment": "Enter your comment here...",
+
+
+
+  "thankYou": "Thank you for giving us the opportunity to improve our service",
+  "followUp": "We would love to follow up with you about your experience.",
+  "fullName": "Full Name",
+  "enterFullName": "Enter your Fullname...",
+  "phone": "Your Phone",
+  "enterPhone": "Enter your number...",
+  "email": "Your Email",
+  "enterEmail": "Enter your Email Address...",
+  "submit": "Submit Feedback",
+  "fillAllFields": "Please fill in all fields!",
+  "submissionError":"There was an issue submitting your feedback. Please try again.",
+  "submitting":"Submitting ..."
+  
+
+}

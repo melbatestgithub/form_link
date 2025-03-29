@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { IoIosArrowRoundBack } from "react-icons/io";
 import hilton from '../assets/HiltonLogo.png';
 import { useNavigate,useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Comment = () => {
+  const { t ,i18n} = useTranslation("comment");
   const [comment, setComment] = useState(""); 
   const navigate = useNavigate();
   const location = useLocation();
@@ -14,7 +16,7 @@ const Comment = () => {
   const { satisfaction, ambiance } = location.state || {};
   const handleNext = () => {
     if (comment.trim() === "") {
-      alert("Please enter a comment.");
+      alert(t("commentAlert"));
       return;
     }
     
@@ -24,6 +26,11 @@ const Comment = () => {
   const handleBack=()=>{
     navigate("/comment")
   }
+
+  useEffect(() => {
+    i18n.changeLanguage(localStorage.getItem("language") || "en");
+  }, [i18n.language]); // Trigger re-render on language change
+
 
   return (
     <div className="flex flex-col w-full p-4">
@@ -39,12 +46,12 @@ const Comment = () => {
         </div>
         <div className="bg-white rounded-lg shadow-md p-4 mb-5 mx-auto w-full max-w-md flex flex-col">
           <p style={{ fontFamily: "Roboto", fontWeight: 500, fontSize: "1rem" }} className="my-3">
-            We are eager to hear from you. A member of our customer experience team will reach out as soon as possible.
+          {t("commentPrompt")} 
           </p>
           <div style={{ borderRadius: "10px" }}>
             <textarea
               style={{ width: "100%", height: "100%", background: "#F3F3F3", padding: "1rem", borderRadius: "10px" }}
-              placeholder="Enter your comment here..."
+              placeholder={t("enterComment")}
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               className="focus:appearance-none"
@@ -57,7 +64,7 @@ const Comment = () => {
         onClick={handleNext}
         className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium mt-8"
       >
-        Next
+         {t("next")}
       </button>
     </div>
   );

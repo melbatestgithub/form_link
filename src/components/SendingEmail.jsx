@@ -3,8 +3,10 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import hilton from '../assets/HiltonLogo.png';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { useTranslation } from "react-i18next";
 
 const SendingEmail = () => {
+  const { t ,i18n} = useTranslation("comment");
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -19,7 +21,7 @@ const SendingEmail = () => {
     e.preventDefault();
 
     if (!phone || !email || !fullname) {
-      alert("Please fill in all fields!");
+      alert(t("fillAllFields"));
       return;
     }
 
@@ -62,45 +64,45 @@ const SendingEmail = () => {
             className="w-40 h-24 object-contain"
           />
           <p className="text-gray-700 font-semibold text-center text-sm" style={{ fontSize: "20px", lineHeight: "23.3px", fontFamily: "Roboto" }}>
-            Thank you for giving us the opportunity to improve our service
+          {t("thankYou")}
           </p>
         </div>
       </div>
 
       <div className="bg-white rounded-lg shadow-md p-4 mb-5 mx-auto w-full max-w-md">
         <p style={{ fontSize: "1rem", fontWeight: 600, lineHeight: "18.75px", fontFamily: "Roboto", color: "#333333" }}>
-          We would love to follow up with you about your experience.
+        {t("followUp")}
         </p>
         <form className="flex flex-col items-start p-3" onSubmit={handleNext}>
           <label className="my-2" style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }}>
-           Full Name
+          {t("fullName")}
           </label>
           <input
             className="focus:appearance-none"
             style={{ textAlign: "start", padding: "1rem", width: "100%", height: "50px", background: "#F3F3F3", borderRadius: "10px" }}
-            placeholder="Enter your Fullname..."
+            placeholder={t("enterFullName")}
             value={fullname}
             onChange={(e) => setFullname(e.target.value)}
             name="fullname"
           />
           <label className="my-2" style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }}>
-            Your Phone
+          {t("phone")}
           </label>
           <input
             className="focus:appearance-none"
             style={{ textAlign: "start", padding: "1rem", width: "100%", height: "50px", background: "#F3F3F3", borderRadius: "10px" }}
-            placeholder="Enter your number..."
+            placeholder={t("enterPhone")}
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             name="phone"
           />
           <label className="my-2" style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }}>
-            Your Email
+          {t("email")}
           </label>
           <input
             className="focus:appearance-none"
             style={{ textAlign: "start", padding: "1rem", width: "100%", height: "50px", background: "#F3F3F3", borderRadius: "10px" }}
-            placeholder="Enter your Email Address..."
+            placeholder={t("enterEmail")}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -110,7 +112,7 @@ const SendingEmail = () => {
             type="submit"
             className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium mt-8"
           >
-            Submit Feedback
+           {t("submit")}
           </button>
         </form>
       </div>

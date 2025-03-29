@@ -5,9 +5,11 @@ import pizza from "../assets/pizza.jpg";
 import reload from "../assets/reload.png";
 import light from "../assets/light.png";
 import { useNavigate ,useLocation} from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import './recordVideo.css'
 
 const RecordVideo = () => {
+  const { t ,i18n} = useTranslation("video");
   const navigate = useNavigate();
   const [count, setCount] = useState(3);
   const [isReady, setIsReady] = useState(false);
@@ -125,7 +127,7 @@ const timerRef = useRef(null);
       });
       
     } else {
-      alert("Please record a video before proceeding.");
+      alert(t("recordPrompt"));
     }
   };
   
@@ -146,7 +148,7 @@ const timerRef = useRef(null);
           <IoIosArrowRoundBack className="text-2xl text-gray-800" />
         </button>
         <div className="flex flex-col items-center flex-grow">
-          <p>Timer</p>
+          <p>{t("timer")}</p>
           <button
   style={{
     width: "90px",

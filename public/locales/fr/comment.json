@@ -1,0 +1,37 @@
+{
+    "feedback": "Nous aimerions entendre vos commentaires",
+    "comments": "Commentaires",
+    "pictures": "Photos",
+    "videos": "Vidéos",
+    "next": "Suivant",
+    "selectLanguage": "Sélectionnez votre langue préférée",
+    "selectSectionAlert": "Veuillez sélectionner une section avant de continuer!",
+
+
+      "commentPrompt": "Nous sommes impatients de vous entendre. Un membre de notre équipe d'expérience client vous contactera dès que possible.",
+      "enterComment": "Entrez votre commentaire ici...",
+      "commentAlert": "Veuillez entrer un commentaire.",
+
+
+  "thankYou": "Merci de nous donner l'opportunité d'améliorer notre service",
+  "followUp": "Nous aimerions faire un suivi de votre expérience.",
+  "fullName": "Nom complet",
+  "enterFullName": "Entrez votre nom complet...",
+  "phone": "Votre téléphone",
+  "enterPhone": "Entrez votre numéro...",
+  "email": "Votre Email",
+  "enterEmail": "Entrez votre adresse e-mail...",
+  "submit": "Soumettre les commentaires",
+   "fillAllFields": "Veuillez remplir tous les champs !",
+
+
+
+  "thankY": "Merci de partager votre expérience !",
+  "thankYouAlt": "Merci",
+  "dearClient": "Cher Client,",
+  "appreciationMessage": "Merci de partager votre expérience avec nous. Nous apprécions énormément votre fidélité. Un membre de notre équipe d'expérience client vous contactera dès que possible.",
+  "teamSignature": "Merci, \nÉquipe Expérience Client \nHilton Hôtel",
+  "backToHome": "Retour à l'accueil"
+  
+  }
+  

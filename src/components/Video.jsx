@@ -4,7 +4,9 @@ import hilton from '../assets/HiltonLogo.png';
 import play from '../assets/play.png';
 import { FaPlay } from "react-icons/fa";
 import {useNavigate,useLocation} from 'react-router-dom'
+import { useTranslation } from "react-i18next";
 const Video = () => {
+  const { t ,i18n} = useTranslation("video");
   const navigate=useNavigate()
   const location=useLocation()
   // Extract experienceId from URL query params
@@ -34,7 +36,7 @@ const Video = () => {
             className="w-40 h-24 object-contain"
           />
           <p className="text-gray-700 font-semibold text-center text-sm">
-          Your confort is our priority
+          {t("comfortPriority")}
           </p>
         </div>
        <button style={{width:"90px",height:"30px",borderRadius:"15px",background:"#FFEDD6",color:"#FF9100",fontWeight:500,fontFamily:"Roboto"}}>End Trip</button>
@@ -42,7 +44,7 @@ const Video = () => {
 
       <div className="bg-white rounded-lg shadow-md p-4 mb-5 mx-auto w-full max-w-md flex flex-col items-center">
         <p className="text-gray-800 text-base font-medium mb-3">
-        Capture a video of your experience. We are eager to hear from you and improve
+       {t("captureVideo")}
         </p>
         <div style={{display:"flex",alignItems:"center",background:""}}>
        <img src={play}/>
@@ -53,7 +55,7 @@ const Video = () => {
       onClick={handleNext}
         className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium mt-16"
       >
-        Next
+        {t("next")}
       </button>
     </div>
   );

@@ -3,7 +3,9 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import hilton from '../assets/HiltonLogo.png';
 import camera from "../assets/camera.png"
 import { useNavigate,useLocation } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 const Picture = () => {
+  const { t ,i18n} = useTranslation("picture");
   const navigate=useNavigate()
   const location=useLocation()
   // Extract experienceId from URL query params
@@ -34,15 +36,15 @@ console.log(data)
             className="w-40 h-24 object-contain"
           />
           <p className="text-gray-700 font-semibold text-center text-sm">
-          Your confort is our priority
+        {t("comfortPriority")}
           </p>
         </div>
-       <button style={{width:"90px",height:"30px",borderRadius:"15px",background:"#FFEDD6",color:"#FF9100",fontWeight:500,fontFamily:"Roboto"}}>End Trip</button>
+       <button style={{width:"150px",height:"30px",borderRadius:"15px",background:"#FFEDD6",color:"#FF9100",fontWeight:500,fontFamily:"Roboto"}}>{t("endTrip")}</button>
       </div>
 
       <div className="bg-white rounded-lg shadow-md p-4 mb-5 mx-auto w-full max-w-md flex flex-col items-center">
         <p className="text-gray-800 text-base font-medium mb-3">
-        Capture pictures of your experience. We are eager to hear from you and improve
+       {t("capturePictures")}
         </p>
         <div style={{display:"flex",alignItems:"center"}}>
          <img  src={camera} style={{width:"160px",height:"160px"}}/>
@@ -53,7 +55,7 @@ console.log(data)
       onClick={handleNext}
         className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium"
       >
-        Next
+        {t("next")}
       </button>
     </div>
   );

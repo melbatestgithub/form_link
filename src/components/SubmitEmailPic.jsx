@@ -4,8 +4,9 @@ import hilton from '../assets/HiltonLogo.png';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';  // Import axios
 import { ClipLoader } from 'react-spinners';  // Import a spinner component
-
+import { useTranslation } from "react-i18next";
 const SendingEmail = () => {
+   const { t ,i18n} = useTranslation("picture");
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [fullname,setFullname]=useState('')
@@ -36,7 +37,7 @@ const SendingEmail = () => {
     e.preventDefault();
 
     if (!phone || !email) {
-      alert("Please fill in both fields!");
+      alert(t("fillAllFields"));
       return;
     }
 
@@ -71,7 +72,7 @@ const SendingEmail = () => {
       navigate(`/ThankYou?experienceId=${experienceId}`);
     } catch (error) {
       console.error("Error submitting feedback:", error);
-      alert("There was an issue submitting your feedback. Please try again.");
+      alert(t("submissionError"));
     } finally {
       setLoading(false);  // Set loading state to false once the request is finished
     }
@@ -94,39 +95,39 @@ const SendingEmail = () => {
             className="w-40 h-24 object-contain"
           />
           <p className="text-gray-700 font-semibold text-center text-sm" style={{ fontSize: "20px", lineHeight: "23.3px", fontFamily: "Roboto" }}>
-            Thank you for giving us the opportunity to improve our service
+          {t("thankYou")}
           </p>
         </div>
       </div>
 
       <div className="bg-white rounded-lg shadow-md p-4 mb-5 mx-auto w-full max-w-md">
         <p style={{ fontSize: "1rem", fontWeight: 600, lineHeight: "18.75px", fontFamily: "Roboto", color: "#333333" }}>
-          We would love to follow up with you about your experience.
+        {t("followUp")}
         </p>
         <div className='flex flex-col items-start p-3'>
-          <label style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }} className='my-2'>Full Name</label>
+          <label style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }} className='my-2'> {t("fullName")}</label>
           <input
             name='fullname'
             value={fullname}
             onChange={(e) => setFullname(e.target.value)}
             className='focus:appearance-none'
             style={{ color: "#000", textAlign: "start", padding: "1rem", width: "100%", height: "50px", background: "#F3F3F3", borderRadius: "10px" }}
-            placeholder='Enter your Fullname...'
+            placeholder={t("enterFullName")}
           />
-          <label style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }} className='my-2'>Your Phone</label>
+          <label style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }} className='my-2'> {t("phone")}</label>
           <input
             name='phone'
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className='focus:appearance-none'
             style={{ color: "#000", textAlign: "start", padding: "1rem", width: "100%", height: "50px", background: "#F3F3F3", borderRadius: "10px" }}
-            placeholder='Enter your number...'
+            placeholder={t("enterPhone")}
           />
-          <label style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }} className='my-2'>Your Email</label>
+          <label style={{ fontSize: "14px", fontFamily: "Roboto", fontWeight: 600, color: "#333333" }} className='my-2'>  {t("email")}</label>
           <input
             className='focus:appearance-none'
             style={{ color: "#000", textAlign: "start", padding: "1rem", width: "100%", height: "50px", background: "#F3F3F3", borderRadius: "10px" }}
-            placeholder='Enter your Email Address...'
+            placeholder={t("enterEmail")}
             name='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -144,7 +145,7 @@ const SendingEmail = () => {
           onClick={handleNext}
           className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium mt-20"
         >
-          Submit Feedback
+          {t("submit")}
         </button>
       )}
     </div>

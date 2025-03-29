@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import hilton from "../assets/HiltonLogo.png";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import { useTranslation } from "react-i18next";
 const MultiSelectPhoto = () => {
+  const { t ,i18n} = useTranslation("picture");
   const navigate = useNavigate();
   const location = useLocation();
   // Extract experienceId from URL query params
@@ -39,7 +40,7 @@ const MultiSelectPhoto = () => {
           />
         </div>
         <p style={{ fontWeight: 700, fontSize: "20px", fontFamily: "Roboto" }}>
-          Thanks for Reviewing it.
+        {t("thanksForReview")}
         </p>
         <div className="bg-white rounded-lg shadow-md p-4 mb-5 mx-auto w-full max-w-md flex flex-col mt-2">
           <div className="flex flex-wrap gap-2">
@@ -91,7 +92,7 @@ const MultiSelectPhoto = () => {
             }}
             className="my-3"
           >
-            Please select the type of feedback you would like to share.
+            {t("selectFeedback")}
           </p>
           <div style={{ borderRadius: "10px", marginTop: "1rem" }}>
             <textarea
@@ -102,7 +103,7 @@ const MultiSelectPhoto = () => {
                 padding: "1rem",
                 borderRadius: "10px",
               }}
-              placeholder="Enter your comment here..."
+              placeholder={t("enter_comment")}
               className="focus:appearance-none"
               name="commentTwo"
               value={commentTwo}
@@ -122,13 +123,13 @@ const MultiSelectPhoto = () => {
             fontWeight: 500,
           }}
         >
-          Retake Picture
+         {t("retake_picture")}
         </button>
         <button
           onClick={handleNext}
           className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium"
         >
-          Next
+          {t("next")}
         </button>
       </div>
     </div>

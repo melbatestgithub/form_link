@@ -3,8 +3,10 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import hilton from "../assets/HiltonLogo.png";
 import subtract from "../assets/Subtract.png";
 import { useNavigate, useLocation, data } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SelectedPhoto = () => {
+  const { t ,i18n} = useTranslation("picture");
   const navigate = useNavigate();
   const location = useLocation();
  // const initPhoto = location.state?.photos; // Extract the initial photo from state
@@ -65,7 +67,7 @@ const [errorMessage,setErrorMessage]=useState("")
           />
         </div>
         <p style={{ fontWeight: 700, fontSize: "20px", fontFamily: "Roboto" }}>
-          Thanks for Reviewing it.
+         {t("thanksForReview")}
         </p>
         <div className="bg-white rounded-lg shadow-md p-4 mb-5 mx-auto w-full max-w-md flex flex-col mt-2">
           <div className="flex flex-wrap gap-2">
@@ -142,7 +144,7 @@ const [errorMessage,setErrorMessage]=useState("")
             }}
             className="my-3"
           >
-            Please select the type of feedback you would like to share.
+           {t("selectFeedback")}
           </p>
           <div style={{ borderRadius: "10px", marginTop: "1rem" }}>
             <textarea
@@ -155,7 +157,7 @@ const [errorMessage,setErrorMessage]=useState("")
                 border: "1px solid #ccc", // Adds clarity
                 zIndex: 1, // Ensures it is above overlapping elements
               }}
-              placeholder="Enter your comment here..."
+              placeholder={t("enter_comment")}
               type="text"
               value={commentOne}
               onChange={(e) => setCommentOne(e.target.value)}
@@ -176,13 +178,13 @@ const [errorMessage,setErrorMessage]=useState("")
             fontWeight: 500,
           }}
         >
-          Retake Picture
+         {t("retake_picture")}
         </button>
         <button
           onClick={handleNext}
           className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium"
         >
-          Next
+          {t("next")}
         </button>
       </div>
     </div>

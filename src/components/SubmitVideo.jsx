@@ -5,8 +5,10 @@ import pizza from "../assets/pizza.jpg"
 import subtract from "../assets/Subtract.png"
 import { FaPlay } from "react-icons/fa";
 import { useNavigate ,useLocation} from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 
 const SubmitVideo = () => {
+   const { t ,i18n} = useTranslation("video");
   const navigate = useNavigate();
   const [videoFeedback,setVideoFeedback]=useState('')
   const location = useLocation();
@@ -52,7 +54,7 @@ const SubmitVideo = () => {
           />
         </div>
         <p style={{ fontWeight: 700, fontSize: "20px", fontFamily: "Roboto" }}>
-          Thanks for Reviewing it.
+         {t("thanksForReview")}.
         </p>
         <div className="bg-white rounded-lg shadow-md p-4 mb-5 mx-auto w-full max-w-md flex flex-col mt-2">
           <div className="flex items-center gap-2">
@@ -127,7 +129,7 @@ const SubmitVideo = () => {
             }}
             className="my-3"
           >
-            Please select the type of feedback you would like to share.
+            {t("selectFeedback")}.
           </p>
           <div style={{ borderRadius: "10px", marginTop: "1rem" }}>
             <textarea
@@ -141,7 +143,7 @@ const SubmitVideo = () => {
                 padding: "1rem",
                 borderRadius: "10px",
               }}
-              placeholder="Enter your comment here..."
+              placeholder={t("enter_comment")}
               className="focus:appearance-none"
             />
           </div>
@@ -153,13 +155,13 @@ const SubmitVideo = () => {
           className="text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium mt-8"
           style={{ background: "#FFEDD6", color: "#FF9100", fontSize: "20px", fontWeight: 500 }}
         >
-          Retake Video
+        {t("retake_video")}
         </button>
         <button
           onClick={handleNext}
           className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium "
         >
-          Next
+          {t("next")}
         </button>
       </div>
     </div>

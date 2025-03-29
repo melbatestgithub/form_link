@@ -4,8 +4,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import hilton from "../assets/HiltonLogo.png";
 import reload from "../assets/reload.png";
 import light from "../assets/light.png";
+import { useTranslation } from "react-i18next";
 
 const TakePhoto = () => {
+  const { t ,i18n} = useTranslation("picture");
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -79,7 +81,7 @@ const TakePhoto = () => {
         },
       });
     } else {
-      alert("Photo capture failed. Please try again.");
+      alert(t("captureFailed"));
     }
   };
 
@@ -99,7 +101,7 @@ const TakePhoto = () => {
           <IoIosArrowRoundBack className="text-2xl text-gray-800" />
         </button>
         <div className="flex flex-col items-center flex-grow">
-          <p>Max Pictures</p>
+          <p>{t("maxPhoto")}</p>
           <button
             style={{
               width: "90px",
@@ -111,7 +113,7 @@ const TakePhoto = () => {
               fontFamily: "Roboto",
             }}
           >
-            {photos.length} of 2
+            {photos.length} {t("of")} 2
           </button>
         </div>
         <button
@@ -134,7 +136,7 @@ const TakePhoto = () => {
         style={{ height: "80vh", border: "1px solid gray" }}
       >
         {cameraError ? (
-          <p className="text-red-500 text-center">Camera access denied. Please allow camera permissions.</p>
+          <p className="text-red-500 text-center">{t("cameraAccessDenied")}</p>
         ) : (
           <video ref={videoRef} autoPlay muted playsInline className="w-full h-full object-contain" />
 
