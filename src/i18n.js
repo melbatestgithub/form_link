@@ -29,7 +29,7 @@ i18n
       },
     },
     lng: localStorage.getItem("language") || "en", // Load saved language
-    fallbackLng: "en",
+    fallbackLng: "fr",
     ns: ["comment,picture,video"], // Define multiple namespaces
     defaultNS: "comment", // Default namespace
     interpolation: {
