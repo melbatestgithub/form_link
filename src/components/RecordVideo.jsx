@@ -164,7 +164,7 @@ const timerRef = useRef(null);
 </button>
 
         </div>
-        <button
+        {/* <button
           style={{
             width: "90px",
             height: "30px",
@@ -176,7 +176,7 @@ const timerRef = useRef(null);
           }}
         >
           i
-        </button>
+        </button> */}
       </div>
 
       <div

@@ -104,8 +104,8 @@
               >
                 <CgComment
                   style={{
-                    width: "40px",
-                    height: "40px",
+                    width: "45px",
+                    height: "45px",
                     color: getIconColor("comments"),
                   }}
                 />
@@ -129,8 +129,8 @@
               >
                 <MdPhotoCamera
                   style={{
-                    width: "40px",
-                    height: "40px",
+                    width: "45px",
+                    height: "45px",
                     color: getIconColor("pictures"),
                   }}
                 />
@@ -154,8 +154,8 @@
               >
                 <RiVideoFill
                   style={{
-                    width: "40px",
-                    height: "40px",
+                    width: "45px",
+                    height: "45px",
                     color: getIconColor("videos"),
                   }}
                 />
@@ -178,7 +178,8 @@
 
         <button
           onClick={handleNext}
-          className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium mt-8"
+          style={{backgroundColor:"#FF9100"}}
+          className=" text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium mt-8"
         >
           {t("next")}
         </button>

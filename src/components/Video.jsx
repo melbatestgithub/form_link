@@ -39,7 +39,7 @@ const Video = () => {
           {t("comfortPriority")}
           </p>
         </div>
-       <button style={{width:"90px",height:"30px",borderRadius:"15px",background:"#FFEDD6",color:"#FF9100",fontWeight:500,fontFamily:"Roboto"}}>End Trip</button>
+
       </div>
 
       <div className="bg-white rounded-lg shadow-md p-4 mb-5 mx-auto w-full max-w-md flex flex-col items-center">

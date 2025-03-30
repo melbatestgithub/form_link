@@ -116,7 +116,7 @@ const TakePhoto = () => {
             {photos.length} {t("of")} 2
           </button>
         </div>
-        <button
+        {/* <button
           style={{
             width: "90px",
             height: "30px",
@@ -127,8 +127,8 @@ const TakePhoto = () => {
             fontFamily: "Roboto",
           }}
         >
-          i
-        </button>
+          
+        </button> */}
       </div>
 
       <div

@@ -38,8 +38,7 @@ console.log(data)
           <p className="text-gray-700 font-semibold text-center text-sm">
         {t("comfortPriority")}
           </p>
-        </div>
-       <button style={{width:"150px",height:"30px",borderRadius:"15px",background:"#FFEDD6",color:"#FF9100",fontWeight:500,fontFamily:"Roboto"}}>{t("endTrip")}</button>
+        </div>                                    
       </div>
 
       <div className="bg-white rounded-lg shadow-md p-4 mb-5 mx-auto w-full max-w-md flex flex-col items-center">

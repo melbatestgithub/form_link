@@ -2,7 +2,7 @@
     "feedback": "Nous aimerions entendre vos commentaires",
     "comments": "Commentaires",
     "pictures": "Photos",
-    "videos": "Vidéos",
+    "videos": "Vidéo",
     "next": "Suivant",
     "selectLanguage": "Sélectionnez votre langue préférée",
     "selectSectionAlert": "Veuillez sélectionner une section avant de continuer!",
@@ -21,7 +21,7 @@
   "enterPhone": "Entrez votre numéro...",
   "email": "Votre Email",
   "enterEmail": "Entrez votre adresse e-mail...",
-  "submit": "Soumettre les commentaires",
+  "submit": "Soumettre Envoyer commentaires",
    "fillAllFields": "Veuillez remplir tous les champs !",
 
 
