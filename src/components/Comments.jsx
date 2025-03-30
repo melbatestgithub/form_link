@@ -34,8 +34,8 @@
     };
 
     const getSectionStyle = (section) => ({
-      width: "120px",
-      height: "115px",
+      width: "145px",
+      height: "120px",
       borderRadius: "10px",
       border: "1px solid #F3F3F3",
       backgroundColor: activeSection === section ? "#FF9100" : "#FFFFFF",
@@ -99,13 +99,13 @@
             <div className="flex flex-wrap justify-between gap-4">
               <div
                 style={getSectionStyle("comments")}
-                className="flex flex-col items-center justify-center p-3 my-3 w-full sm:w-32 md:w-40"
+                className="flex flex-col items-center justify-center my-3 w-full sm:w-32 md:w-40"
                 onClick={() => handleSectionClick("comments")}
               >
                 <CgComment
                   style={{
-                    width: "45px",
-                    height: "45px",
+                    width: "60px",
+                    height: "60px",
                     color: getIconColor("comments"),
                   }}
                 />
@@ -129,8 +129,8 @@
               >
                 <MdPhotoCamera
                   style={{
-                    width: "45px",
-                    height: "45px",
+                    width: "60px",
+                    height: "60px",
                     color: getIconColor("pictures"),
                   }}
                 />
@@ -154,8 +154,8 @@
               >
                 <RiVideoFill
                   style={{
-                    width: "45px",
-                    height: "45px",
+                    width: "60px",
+                    height: "60px",
                     color: getIconColor("videos"),
                   }}
                 />
