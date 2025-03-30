@@ -32,6 +32,9 @@ const SendingEmail = () => {
           })
         );
 
+        if(!fullname || !phone || !email){
+          setSubmissionError(t("fillAllFields"))
+        }
       const formData = new FormData();
       formData.append("satisfaction", satisfaction);
       formData.append("ambiance", ambiance);
@@ -102,6 +105,7 @@ const SendingEmail = () => {
             value={email}
           />
         </div>
+        {submissionError && <p className="text-red-500 text-sm mt-2">{submissionError}</p>}
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       </div>
 
