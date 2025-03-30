@@ -31,7 +31,8 @@
   "dearClient": "Cher Client,",
   "appreciationMessage": "Merci de partager votre expérience avec nous. Nous apprécions énormément votre fidélité. Un membre de notre équipe d'expérience client vous contactera dès que possible.",
   "teamSignature": "Merci, \nÉquipe Expérience Client \nHilton Hôtel",
-  "backToHome": "Retour à l'accueil"
+  "backToHome": "Retour à l'accueil",
+   "submissionError":"Hubo un problema al enviar su comentario. Por favor, inténtelo de nuevo."
   
   }
   

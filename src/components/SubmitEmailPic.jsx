@@ -7,6 +7,8 @@ import { ClipLoader } from 'react-spinners';  // Import a spinner component
 import { useTranslation } from "react-i18next";
 const SendingEmail = () => {
    const { t ,i18n} = useTranslation("picture");
+   const [submissionError,setSubmissionError]=useState("")
+   const [error,setError]=useState("")
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [fullname,setFullname]=useState('')
@@ -37,7 +39,7 @@ const SendingEmail = () => {
     e.preventDefault();
 
     if (!phone || !email) {
-      alert(t("fillAllFields"));
+      setError(t("fillAllFields"));
       return;
     }
 
@@ -72,7 +74,7 @@ const SendingEmail = () => {
       navigate(`/ThankYou?experienceId=${experienceId}`);
     } catch (error) {
       console.error("Error submitting feedback:", error);
-      alert(t("submissionError"));
+      setSubmissionError(t("submissionError"));
     } finally {
       setLoading(false);  // Set loading state to false once the request is finished
     }
@@ -134,7 +136,8 @@ const SendingEmail = () => {
           />
         </div>
       </div>
-
+      <p className="text-red-600 font-serif font-medium">{error}</p>
+      <p className="text-red-600 font-serif font-medium">{submissionError}</p>
       {/* Display the spinner when loading */}
       {loading ? (
         <div className="flex justify-center mt-10">

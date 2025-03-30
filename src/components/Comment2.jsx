@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 const Comment = () => {
   const { t ,i18n} = useTranslation("comment");
   const [comment, setComment] = useState(""); 
+  const [error,setError]=useState("")
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -16,7 +17,7 @@ const Comment = () => {
   const { satisfaction, ambiance } = location.state || {};
   const handleNext = () => {
     if (comment.trim() === "") {
-      alert(t("commentAlert"));
+      setError(t("commentAlert"));
       return;
     }
     
@@ -60,6 +61,7 @@ const Comment = () => {
           </div>
         </div>  
       </div>
+      <p className="text-red-600 font-serif font-medium">{error}</p>
       <button
         onClick={handleNext}
         className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium mt-8"

@@ -7,6 +7,8 @@ import { useTranslation } from "react-i18next";
 
 const SendingEmail = () => {
   const { t ,i18n} = useTranslation("comment");
+  const [error,setError]=useState("")
+  const [submissionError,setSubmissionError]=useState("")
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -21,7 +23,7 @@ const SendingEmail = () => {
     e.preventDefault();
 
     if (!phone || !email || !fullname) {
-      alert(t("fillAllFields"));
+      setError(t("fillAllFields"));
       return;
     }
 
@@ -43,7 +45,7 @@ const SendingEmail = () => {
       navigate(`/ThankYou?experienceId=${experienceId}`); 
     } catch (error) {
       console.error('Error submitting feedback:', error);
-      alert('An error occurred while submitting your feedback. Please try again.');
+      setSubmissionError(t("submissionError"));
     }
   };
 
@@ -108,6 +110,8 @@ const SendingEmail = () => {
             onChange={(e) => setEmail(e.target.value)}
             name="email"
           />
+           <p className="text-red-600 font-serif font-medium">{error}</p>
+           <p className="text-red-600 font-serif font-medium">{submissionError}</p>
           <button
             type="submit"
             className="bg-orange-500 text-white rounded-full py-3 px-6 w-full max-w-md mx-auto shadow-lg font-medium mt-8"

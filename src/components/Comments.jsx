@@ -10,6 +10,7 @@
   const Comment = () => {
     const { t, i18n } = useTranslation();
     const [activeSection, setActiveSection] = useState(null);
+    const [error,setError]=useState("")
     const navigate = useNavigate(); 
     const location = useLocation();
     const handleSectionClick = (section) => {
@@ -52,7 +53,7 @@
     }
     const handleNext = () => {
       if (!activeSection) {
-        alert(t("selectSectionAlert"))
+        setError(t("selectSectionAlert"))
         return;
       }
      
@@ -175,7 +176,7 @@
             </div>
           </div>
         </div>
-
+       <p className="text-red-600 font-serif font-medium">{error}</p>
         <button
           onClick={handleNext}
           style={{backgroundColor:"#FF9100"}}

@@ -183,7 +183,6 @@ const timerRef = useRef(null);
         className="bg-white p-2 mb-5 mx-auto w-full max-w-md flex flex-col items-center"
         style={{
           height: "80vh",
-  
           opacity: isReady ? 1 : 0.6, // Change opacity when ready
           transition: "opacity 0.5s",
         }}

@@ -22,6 +22,7 @@
   "enterEmail": "Enter your Email Address...",
   "submit": "Submit Feedback",
   "fillAllFields": "Please fill in all fields!",
+   "submissionError":"There was an issue submitting your feedback. Please try again.",
 
 
 

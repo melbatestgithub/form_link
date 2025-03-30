@@ -10,6 +10,7 @@ const SendingEmail = () => {
   const { t ,i18n} = useTranslation("video");
   const navigate = useNavigate();
   const location = useLocation();
+  const [submissionError,setSubmissionError]=useState("")
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [fullname,setFullname]=useState("")
