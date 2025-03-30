@@ -132,13 +132,14 @@ const TakePhoto = () => {
       </div>
 
       <div
-        className="bg-white p-4 mb-5 mx-auto w-full max-w-md flex flex-col items-center"
-        style={{ height: "80vh", border: "1px solid gray" }}
+       className="w-full flex items-center  mx-auto  max-w-md mb-3"
+       style={{  height: "80vh",border:"1px solid black"}}
+      
       >
         {cameraError ? (
           <p className="text-red-500 text-center">{t("cameraAccessDenied")}</p>
         ) : (
-          <video ref={videoRef} autoPlay muted playsInline className="w-full h-full object-contain" />
+          <video ref={videoRef} autoPlay muted playsInline className="w-full h-full object-cover " />
 
         )}
       </div>

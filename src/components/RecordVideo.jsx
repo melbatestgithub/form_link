@@ -180,15 +180,15 @@ const timerRef = useRef(null);
       </div>
 
       <div
-        className="video-container bg-white p-4 mb-5 mx-auto w-full max-w-md flex flex-col items-center"
+        className="bg-white p-2 mb-5 mx-auto w-full max-w-md flex flex-col items-center"
         style={{
           height: "80vh",
-          border: "1px solid gray",
+  
           opacity: isReady ? 1 : 0.6, // Change opacity when ready
           transition: "opacity 0.5s",
         }}
       >
-       <video ref={videoRef} style={{ width: "100%", height: "100%" }} muted playsInline disablePictureInPicture />
+       <video ref={videoRef}   className="w-full h-full object-cover" muted playsInline disablePictureInPicture />
 
         {!isReady && (
           <span
